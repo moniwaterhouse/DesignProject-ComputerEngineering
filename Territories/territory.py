@@ -1,4 +1,4 @@
-from cell import Cell
+from Territories.cell import Cell
 
 class Territory:
     
@@ -10,8 +10,6 @@ class Territory:
         # Determine the dimensions of the matrix
         self.num_rows = len(self.lines)
         self.num_cols = max(len(line) for line in self.lines)
-        print("Rows: ", self.num_rows)
-        print("Columns: ", self.num_cols)
         self.matrix = self.create_territory();
     
     
@@ -39,7 +37,7 @@ class Territory:
 
 
         
-def main():
+'''def main():
     newTerritory = Territory("territory1.txt")
     territory = newTerritory.matrix
     for row in territory:
@@ -47,4 +45,4 @@ def main():
         for cell in row:
             print(cell.visited, " ", end='')
 
-main()
+main()'''
