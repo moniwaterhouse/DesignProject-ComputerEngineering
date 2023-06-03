@@ -38,6 +38,21 @@ class Drone:
           moveDirection = sortedOptions[position][0]
       else:
         moveDirection = sortedOptions[0][0]
+    else:
+      if sortedOptions[0][1] == sortedOptions[1][1]:
+        if sortedOptions[0][1] == sortedOptions[2][1]:
+          if sortedOptions[0][1] == sortedOptions[3][1]:
+            position = random.randint(0, 3)
+            moveDirection = sortedOptions[position][0]
+          else:
+            position = random.randint(0, 2)
+            moveDirection = sortedOptions[position][0]
+        else:
+          position = random.randint(0, 1)
+          moveDirection = sortedOptions[position][0]
+      else:
+        moveDirection = sortedOptions[0][0]
+
     self.changeCell(moveDirection)
     return
 
@@ -62,6 +77,15 @@ class Drone:
   def getMoveOptions(self, territory):
     self.checkNeighborState(territory)
     moveOptions = []
+    '''if self.eastValue == 0:
+      moveOptions.append(("east", self.eastPheromone))
+    if self.westValue == 0:
+      moveOptions.append(("west", self.westPheromone))
+    if self.northValue == 0:
+      moveOptions.append(("north", self.northPheromone))
+    if self.southValue == 0:
+      moveOptions.append(("south", self.southPheromone))'''
+
     if self.direction == "north":      
       if self.eastValue == 0:
         moveOptions.append(("east", self.eastPheromone))
@@ -86,7 +110,7 @@ class Drone:
       else:
         if len(moveOptions) == 0:
           self.direction = "north"
-          moveOptions.append(("north", self.southPheromone))
+          moveOptions.append(("north", self.northPheromone))
         else:
           self.changeDirection("south")
 
@@ -100,7 +124,7 @@ class Drone:
       else:
         if len(moveOptions) == 0:
           self.direction = "west"
-          moveOptions.append(("west", self.southPheromone))
+          moveOptions.append(("west", self.westPheromone))
         else:
           self.changeDirection("east")
     elif self.direction == "west":
@@ -113,9 +137,10 @@ class Drone:
       else:
         if len(moveOptions) == 0:
           self.direction = "east"
-          moveOptions.append(("east", self.southPheromone))
+          moveOptions.append(("east", self.eastPheromone))
         else:
           self.changeDirection("west")
+
     return moveOptions
 
 

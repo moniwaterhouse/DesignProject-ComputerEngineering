@@ -6,10 +6,10 @@ from Drone.drone import Drone
 
 WIDTH, HEIGHT = 600, 600
 CELL_SIZE = 5
-DRONE_NUMBER = 20
+DRONE_NUMBER = 10
 PHEROMONE_INTENSITY = 500
 OBSTACLE_COLOR = (63, 60, 60)
-DRONE_COLOR = (66, 229, 214)
+DRONE_COLOR = (207, 116, 221)
 WHITE = (255, 255, 255)
 
 pygame.init()
@@ -23,7 +23,7 @@ def draw_territory(territory):
                 pygame.draw.rect(WIN, OBSTACLE_COLOR, pygame.Rect(j*CELL_SIZE,i*CELL_SIZE,CELL_SIZE, CELL_SIZE),0)
             else:
                 pheromoneIntensity = territory[i][j].pheromoneIntensity
-                if pheromoneIntensity in range(337, 501):
+                if pheromoneIntensity in range(337, 500):
                     pheromoneColor = (229, 66 + (500 - pheromoneIntensity), 66)
                 elif pheromoneIntensity in range(174, 337):
                     pheromoneColor = (pheromoneIntensity - 109, 229, 66)
@@ -47,7 +47,7 @@ def main():
     run = True
     clock = pygame.time.Clock()
 
-    newTerritory = Territory("Territories/territory1.txt")
+    newTerritory = Territory("Territories/territory3.txt")
     territory = newTerritory.matrix
 
     drones = []
@@ -90,6 +90,7 @@ def main():
                         missingCells = True
         else:
             print("Iterations: ", counter)
+            pygame.stop()
         
 
         
